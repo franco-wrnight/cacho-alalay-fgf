@@ -1,0 +1,15 @@
+# bins y compilados
+*.o
+*.out
+cacho
+cacho_api
+
+# carpetas
+build/
+bin/
+
+# archivos
+.vscode/
+.idea/
+*.swp
+.DS_Store
