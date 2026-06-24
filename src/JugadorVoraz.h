@@ -24,10 +24,11 @@ public:
   for(size_t i = 0 ; i < actuacionesPosibles.size(); i++){
     const Actuacion& opt = actuacionesPosibles[i];
 
+    //si tenemos dormida automaticamente win
     if(opt.accion == "dormida"){
       return i;
     }
-
+//luego
     //evaluar opciones por puntaje
     if(opt.accion == "anotar" || opt.accion == "sobre"){
       if(opt.anotacion.puntos > maxPuntos){
@@ -45,8 +46,7 @@ public:
   }
   
   //parte fundamental de mi resolución: algoritmo voraz
-
-  //si se nos da la oportunidad de asegurar 20 puntos o mas, se cobra inmediatamente
+  //si se nos da la oportunidad de asegurar 20 puntos o mas, cobramos inmediatamente
   if(maxPuntos >= 20){
     return mejorIndice;
   }
@@ -54,11 +54,11 @@ public:
   if(indiceLanzar != -1){
     return indiceLanzar;
   }
-  //si ya se hizo el 2do intento y no mejoramos, cobramos lo poco que haya
+  //si ya se hizo el 2do intento y no mejoramos cobramos lo poco q sacamos
   if(maxPuntos > 0){
     return mejorIndice;
   }
-  //si todas las jugadas fueron pobres y malas, último recurso
+  //si todas las jugadas fueron malas, retirarse
   return indiceTachar;
   
   }
