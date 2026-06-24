@@ -1,5 +1,5 @@
 #include "JugadorAleatorio.h"
-#include "JugadorVoraz.h"
+#include "MightyWS.h"
 #include "Tournament.h"
 #include <iostream>
 #include <memory>
@@ -8,7 +8,7 @@ int main() {
   Tournament t;
 
   t.addPlayer(
-      []() { return std::make_shared<JugadorVoraz>("MightyFGF"); });
+      []() { return std::make_shared<MightyWS>("Mightyws"); });
   t.addPlayer(
       []() { return std::make_shared<JugadorAleatorio>("Bot_Random_2"); });
   t.addPlayer(
