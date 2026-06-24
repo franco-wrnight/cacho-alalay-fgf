@@ -1,20 +1,6 @@
-# Cacho-CPP
+# Cacho-Alalay-FGF
 
-A standalone C++ implementation of the Cacho game engine (Alalay rules), including a Web API and a Web Client.
-
-## Repository Structure
-
-- `src/`: Core engine headers and standalone simulation runner.
-- `api/`: Web API server using the Crow framework.
-- `web/`: Frontend web interface.
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- `g++` (C++17 support)
-- `make`
-- `boost-system`, `boost-thread` (required for the Web API)
+Mi implementación de un algoritmo voraz para un jugador automático de Cacho Alalay en C++.
 
 ### Building the Project
 
