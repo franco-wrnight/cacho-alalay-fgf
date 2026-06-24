@@ -3,6 +3,7 @@
 #include "Tournament.h"
 #include <iostream>
 #include <memory>
+#include "JugadorHumano.h"
 
 int main() {
   Tournament t;
@@ -10,14 +11,12 @@ int main() {
   t.addPlayer(
       []() { return std::make_shared<MightyWS>("Mightyws"); });
   t.addPlayer(
-      []() { return std::make_shared<JugadorAleatorio>("Bot_Random_2"); });
-  t.addPlayer(
-      []() { return std::make_shared<JugadorAleatorio>("Bot_Random_3"); });
+      []() { return std::make_shared<JugadorAleatorio>("Random_Bot"); });
 
-  std::cout << "Starting simulation with 3 Random Players (100 matches)..."
+  std::cout << "Starting simulation with 2 Random Players (10000 matches)..."
             << std::endl;
 
-  t.run(100);
+  t.run(10000);
   t.displayResults();
 
   return 0;

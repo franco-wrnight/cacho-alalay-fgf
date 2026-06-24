@@ -6,8 +6,11 @@
 #include <random>
 #include <string>
 #include <vector>
+#include <climits>
 
 class MightyWS : public Jugador {
+  private:
+    const std::vector<double> esperanzas = {0.00, 0.1667, 0.3333, 0.5000, 0.6667, 0.8333};
 public:
   MightyWS(std::string nom = "Mightyws") : Jugador(nom) {}
 
@@ -20,7 +23,7 @@ public:
   int indiceLanzar = -1;
   int indiceTachar = -1;
 
-  //prints de cada jugada de mi jugador mightyws esto es mas que nada para debuggear cada turno de mi jugador
+  //prints de cada jugada de mi jugador mightyws esto es mas que nada para debuggear cada turno de mi jugador IGNORAR
   bool printsjugadas = false;
   if (printsjugadas) {
       std::cout << "\n turno de " << this->nombre << " " << std::endl;
@@ -40,12 +43,11 @@ public:
 
   for(size_t i = 0 ; i < actuacionesPosibles.size(); i++){
     const Actuacion& opt = actuacionesPosibles[i];
+    
     //si tenemos dormida automaticamente win
     if(opt.accion == "dormida"){
       return i;
     }
-
-//luego
 
     //evaluar opciones por puntaje
     if(opt.accion == "anotar" || opt.accion == "sobre"){
@@ -63,24 +65,37 @@ public:
     }
   }
   
-  //parte fundamental de mi resolución: algoritmo voraz
-  //este primer if es equivalente a cortar la distribucion X ¬(5,1/6) en valores de X mayores a 4
-  if(maxPuntos >= 20){
-    return mejorIndice;
+  //parte fundamental de mi resolución viene ahora
+  std::vector<int> count(7,0);
+  for(auto v : dados){
+    count[v]++;
   }
-  //si la mesa da pocos puntos 
-  if(indiceLanzar != -1){
+  
+  int vecesDadoMax = 0;
+  int caraDadoMax = 0;
+  for(size_t i = 1; i<=6; i++){
+    if(count[i] > vecesDadoMax){
+      vecesDadoMax = count[i];
+      caraDadoMax = i;
+    }
+  }
+  //ahora se ve cual es el dado maximo y cuantas veces sale y luego eso se aplica a la formula de esperanza, sacar n dados libres
+  int dadosLibres = 5 - vecesDadoMax;
+  //ptje proyectado por esperanza e(x) = np
+  double puntajeProyectado = maxPuntos + (esperanzas[dadosLibres] * caraDadoMax);
+
+  //si la mano actual es debil, menor que 20, y el ptje proyectado es mayor que los puntos sacados
+  //binomial: toma el riesgo al proyectarse
+  //voraz si la mano es mayor a 20 y si la proyeccion es mala con pocos dados
+  if(indiceLanzar != -1 && maxPuntos < 20 && puntajeProyectado > maxPuntos){
     return indiceLanzar;
   }
-  //si ya se hizo el 2do intento y no mejoramos cobramos lo poco q sacamos
   if(maxPuntos > 0){
     return mejorIndice;
   }
-  //si todas las jugadas fueron malas, retirarse
+  //si todas las jugadas fueron malas, aceptar cualquier cosa
   return indiceTachar;
   
-  }
+}
 };
-
-
-#endif 
+#endif
