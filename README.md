@@ -1,26 +1,6 @@
 # Cacho-Alalay-FGF
 
-Mi implementación de un algoritmo voraz para un jugador automático de Cacho Alalay en C++.
-
-### Building the Project
-
-You can build both the core simulation and the Web API from the root directory:
-
-```bash
-make
-```
-
-Alternatively, you can build them individually:
-
-```bash
-# To build the standalone simulation
-cd src
-make
-
-# To build the Web API
-cd api
-make
-```
+Mi implementación de un algoritmo voraz para un jugador automático de Cacho Alalay en C++, basado en la distribución binomial.
 
 ## 🎲 Running simulations
 
@@ -41,14 +21,6 @@ cd api
 ```
 
 Once running, open [http://localhost:8080](http://localhost:8080) in your browser to play.
-
-## 🛠 Features
-
-- **Decoupled Engine**: Pure C++ implementation with no external dependencies (except for Crow/Boost in the API).
-- **Alalay Rules**: Full support for Alalay tournament rules.
-- **Web Interface**: Modern web client for human play.
-- **Random Player**: Included for testing and simulation.
-- **Human Player**: Base class and logic for human interaction.
 
 ## Algunas anotaciones matemáticas detrás del juego
 
