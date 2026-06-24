@@ -84,7 +84,7 @@ $$
 P(X=3) = \binom{5}{3} \left(\frac{1}{6}\right)^3 \left(\frac{5}{6}\right)^2 = \frac{250}{7776} \approx 3.21\%
 $$
 
-**Para $k=4$:**
+**Para $k=4$: (este es importante, junto a k=5, ambos suman 0,33%)**
 
 $$
 P(X=4) = \binom{5}{4} \left(\frac{1}{6}\right)^4 \left(\frac{5}{6}\right)^1 = \frac{25}{7776} \approx 0.32\%
